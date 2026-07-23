@@ -9,7 +9,7 @@ app.use(express.json());
 
 // To create a new student profile
 app.post('/createstudentprofile', (req, res) => {
-    const {firstName, lastName, email, phoneNumber, age, address, gender, course, grade,level} = req.body;
+    const {firstName, lastName, email, phoneNumber, age, address, gender, course, grade} = req.body;
 
     const studentProfile = {
         studentId: profiles.length + 1,
@@ -22,7 +22,6 @@ app.post('/createstudentprofile', (req, res) => {
         gender, 
         course, 
         grade,
-        level,
         enrolledDate: new Date()
     };
 
@@ -50,7 +49,7 @@ app.get('/getastudentprofile/:id', (req,res) => {
 // To update a student profile by ID
 app.put('/updatestudentprofile/:id', (req,res) => {
     const studentId = parseInt(req.params.id);
-    const {firstName, lastName, email, phoneNumber, age, address, gender, course, grade,level} = req.body;
+    const {firstName, lastName, email, phoneNumber, age, address, gender, course, grade, level} = req.body;
     const studentProfile = profiles.find(profile => profile.studentId === studentId);
 
     if (!studentProfile) {
